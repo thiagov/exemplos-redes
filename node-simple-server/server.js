@@ -8,7 +8,6 @@ app.get('/home', function(req, res) {
     console.log(req.query);
     console.log(req.query.senha);
     res.json("Ola mundo");
-    res.end();
 });
 
 app.post('/data', function(req, res) {
