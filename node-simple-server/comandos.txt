@@ -2,12 +2,41 @@ Wireshark
 
 tcp.port == 3000 and http
 
-App exemplo:
+Exemplos:
 
-GET
-curl -v -X GET "http://localhost:3000/home"
-curl -v -X GET "http://localhost:3000/home?param1=value1&param2=value2"
+GET:
+  - Página OK
+    curl -v -X GET "http://localhost:3000/home"
+  - GET com parâmetros
+    curl -v -X GET "http://localhost:3000/home?nome=thiago&sobrenome=vilela"
 
-POST
-curl -v -d "param1=value1&param2=value2" -X POST "http://localhost:3000/data"
-curl -v -d '{"key1":"value1", "key2":"value2"}' -H "Content-Type: application/json" -X "POST http://localhost:3000/data"
+OPTIONS:
+    curl -v -X OPTIONS "http://localhost:3000/home"
+    curl -v -X OPTIONS "http://localhost:3000/teste_post"
+
+HEAD:
+    curl -v "http://localhost:3000/home" --head
+
+POST:
+  - POST application/x-www-form-urlencoded
+    curl -v -d "nome=thiago&sobrenome=vilela" -X POST "http://localhost:3000/teste_post"
+  - POST application/json
+    curl -v -d '{"nome":"thiago", "sobrenome":"vilela"}' -H "Content-Type: application/json" -X POST "http://localhost:3000/teste_post"
+
+DELETE
+    - Request com body
+      curl -v -d "nome=thiago&sobrenome=vilela" -X DELETE "http://localhost:3000/teste_post"
+    - Request sem body
+      curl -v -X DELETE "http://localhost:3000/teste_post"
+
+ERROS:
+  - Teste de redirecionamento (Código 301)
+    curl -v -X GET "http://localhost:3000/teste_redirect"
+    Mostrar no browser
+  - Página não existente (404)
+    curl -v -X GET "http://localhost:3000/teste_nao_existe"
+  - POST com erro 400
+    curl -v -d '{"sobrenome":"vilela"}' -H "Content-Type: application/json" -X POST "http://localhost:3000/teste_post"
+
+STATUS CODE 100:
+    curl -v -d '{"nome":"thiago", "sobrenome":"vilela"}' -H "Content-Type: application/json" -H "Expect: 100-continue" -X POST "http://localhost:3000/teste_post"
