@@ -7,18 +7,18 @@ import java.net.Socket;
 
 public class TCPEchoServer {
     private static class EchoClientHandler extends Thread {
-        private Socket socket;
+        private Socket connectionSocket;
         private PrintWriter out;
         private BufferedReader in;
 
         public EchoClientHandler(Socket socket) {
-            this.socket = socket;
+            this.connectionSocket = socket;
         }
 
         public void run() {
             try {
-                out = new PrintWriter(socket.getOutputStream(), true);
-                in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+                out = new PrintWriter(connectionSocket.getOutputStream(), true);
+                in = new BufferedReader(new InputStreamReader(connectionSocket.getInputStream()));
 
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
@@ -29,7 +29,7 @@ public class TCPEchoServer {
                 }
                 in.close();
                 out.close();
-                socket.close();
+                connectionSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
