@@ -25,7 +25,7 @@ public class EchoClient {
                         address, 4445);
                 socket.send(packet);
 
-                // Recebe resposta do servidor 
+                // Recebe resposta do servidor
                 packet = new DatagramPacket(buf, buf.length);
                 socket.receive(packet);
                 String response = new String(packet.getData(), 0, packet.getLength());
