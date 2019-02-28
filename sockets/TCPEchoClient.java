@@ -15,9 +15,9 @@ public class TCPEchoClient {
         BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
         boolean running = true;
 
+        Scanner scanner = new Scanner(System.in);
         while (running) {
             // Pega input do usuario
-            Scanner scanner = new Scanner(System.in);
             System.out.print("Entre com uma mensagem: ");
             String message = scanner.nextLine();
 

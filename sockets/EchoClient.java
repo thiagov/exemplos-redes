@@ -13,10 +13,10 @@ public class EchoClient {
         byte[] buf = new byte[256];
         boolean running = true;
 
+        Scanner scanner = new Scanner(System.in);
         try {
             while (running) {
                 // Pega input do usuario
-                Scanner scanner = new Scanner(System.in);
                 System.out.print("Entre com uma mensagem: ");
                 String message = scanner.nextLine();
 
