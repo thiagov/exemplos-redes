@@ -9,7 +9,6 @@ import java.net.UnknownHostException;
 public class HttpClient {
     public static void main(String[] args) throws IOException, UnknownHostException {
         String serverName = "httpbin.org";
-
         InetAddress address = InetAddress.getByName(serverName);
         Socket clientSocket = new Socket(address, 80);
 
@@ -17,7 +16,7 @@ public class HttpClient {
         PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true);
         out.print("GET /get HTTP/1.1\r\n");
         out.print("Host: " + serverName + "\r\n");
-        out.print("User-Agent: Http cliente em java\r\n");
+        out.print("User-Agent: Cliente http em java\r\n");
         out.print("Accept: */*\r\n");
         out.print("Connection: close\r\n");
         out.print("\r\n");
@@ -30,15 +29,18 @@ public class HttpClient {
             System.out.println(line);
         }
 
+        in.close();
+        out.close();
+        clientSocket.close();
+
         // Abre nova conexão com o servidor
         clientSocket = new Socket(address, 80);
-
         // Envia dados para o servidor
         out = new PrintWriter(clientSocket.getOutputStream(), true);
         String corpo = "{\"nome\": \"thiago\", \"sobrenome\": \"vilela\"}";
         out.print("POST /post HTTP/1.1\r\n");
         out.print("Host: " + serverName + "\r\n");
-        out.print("User-Agent: Simple Http Client\r\n");
+        out.print("User-Agent: Cliente http em java\r\n");
         out.print("Accept: application/json" + "\r\n");
         out.print("Connection: close\r\n");
         out.print("Content-Type: application/json\r\n");
