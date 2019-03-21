@@ -13,6 +13,7 @@ public class TCPEchoServer {
 
         public EchoClientHandler(Socket socket) {
             this.connectionSocket = socket;
+            System.out.println("Novo cliente conectado: " + socket);
         }
 
         public void run() {
