@@ -1,3 +1,4 @@
 node-simple-server/node_modules
 sockets/*.class
 *.class
+.DS_Store
